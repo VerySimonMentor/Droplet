@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: calc(100vh - 60px); /* 60px 是头部的高度 */
+            position: fixed;
+            top: 60px;
+            left: 0;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+        .sidebar img {
+            width: 30px;
+            margin-right: 10px;
+        }
+        .sidebar .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            cursor: pointer;
+            color: #333;
+            text-decoration: none;
+        }
+        .sidebar .menu-item:hover {
+            background-color: #e9ecef;
+        }
+        .sidebar .menu-item svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+        }
+        .sidebar .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+        .sidebar .submenu a {
+            display: block;
+            padding: 5px 0;
+            text-decoration: none;
+            color: #333;
+        }
+        .sidebar .submenu a:hover {
+            background-color: #e9ecef;
+        }
+        .sidebar .submenu a.active,
+        .sidebar .menu-item.active > span {
+            color: #0073e6;
+        }
+        .toggle-btn {
+            position: fixed;
+            top: 70px;
+            left: 260px;
+            cursor: pointer;
+            background-color: #f8f9fa;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar.hidden ~ .toggle-btn {
+            left: 10px; /* 在侧边栏隐藏时移动按钮位置 */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <!-- 这里是头部内容 -->
+        <img src="mentor_logo.png" alt="Mentor Logo">
+        <h2>Mentor</h2>
+    </div>
+    <div class="sidebar">
+        <div class="menu-item">
+            <svg><!-- Resources Icon SVG --></svg>
+            <span>资源池</span>
+        </div>
+        <div class="submenu">
+            <a href="#">查看资源</a>
+            <a href="#">分配资源</a>
+            <a href="#">查看渠道</a>
+            <a href="#">查看院校</a>
+        </div>
+        <div class="menu-item">
+            <svg><!-- List Icon SVG --></svg>
+            <span>列表页</span>
+        </div>
+        <div class="submenu">
+            <a href="#">子菜单项 1</a>
+            <a href="#">子菜单项 2</a>
+        </div>
+        <div class="menu-item">
+            <svg><!-- Form Icon SVG --></svg>
+            <span>表单页</span>
+        </div>
+        <div class="submenu">
+            <a href="#">子菜单项 1</a>
+            <a href="#">子菜单项 2</a>
+        </div>
+        <div class="menu-item">
+            <svg><!-- Details Icon SVG --></svg>
+            <span>详情页</span>
+        </div>
+        <div class="submenu">
+            <a href="#">子菜单项 1</a>
+            <a href="#">子菜单项 2</a>
+        </div>
+        <div class="menu-item">
+            <svg><!-- User Management Icon SVG --></svg>
+            <span>用户管理</span>
+        </div>
+        <div class="submenu">
+            <a href="#">子菜单项 1</a>
+            <a href="#">子菜单项 2</a>
+        </div>
+        <div class="menu-item">
+            <svg><!-- Error Page Icon SVG --></svg>
+            <span>异常页</span>
+        </div>
+        <div class="submenu">
+            <a href="#">子菜单项 1</a>
+            <a href="#">子菜单项 2</a>
+        </div>
+        <div class="menu-item">
+            <svg><!-- Personal Center Icon SVG --></svg>
+            <span>个人中心</span>
+        </div>
+        <div class="submenu">
+            <a href="#">子菜单项 1</a>
+            <a href="#">子菜单项 2</a>
+        </div>
+    </div>
+    <div class="toggle-btn">☰</div>
+    <script>
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', () => {
+                // 切换子菜单的显示状态
+                const submenu = item.nextElementSibling;
+                if (submenu && submenu.classList.contains('submenu')) {
+                    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+
+        document.querySelectorAll('.submenu a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                // 阻止子菜单链接的默认行为
+                e.stopPropagation();
+                // 移除所有子菜单项的激活状态
+                document.querySelectorAll('.submenu a').forEach(a => a.classList.remove('active'));
+                // 移除所有父菜单项的激活状态
+                document.querySelectorAll('.menu-item').forEach(i => i.classList.remove('active'));
+                // 添加当前子菜单项的激活状态
+                link.classList.add('active');
+                // 添加父菜单项的激活状态
+                link.closest('.submenu').previousElementSibling.classList.add('active');
+            });
+        });
+
+        document.querySelector('.toggle-btn').addEventListener('click', () => {
+            document.querySelector('.sidebar').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
