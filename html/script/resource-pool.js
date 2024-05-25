@@ -3,7 +3,14 @@ var programValue = 1;
 $(document).ready(function () {
 
     // 绑定时间范围选择器
-    $('#login-time-filters').daterangepicker();
+    $('#login-time-range-filters').daterangepicker();
+    //初始化start和end时间都是当前日期
+    // $('#login-time-range-filters').data('daterangepicker').setStartDate(new Date());
+    // $('#login-time-range-filters').data('daterangepicker').setEndDate(new Date());
+    $('#assign-time-range-filters').daterangepicker();
+    //初始化start和end时间都是当前日期
+    // $('#assign-time-range-filters').data('daterangepicker').setStartDate(new Date());
+    // $('#assign-time-range-filters').data('daterangepicker').setEndDate(new Date());
 
     //点击ul #programs-filters下的li后，将其值赋给programValue
     $('#programs-filters').on('click', 'li', function (e) {
@@ -39,6 +46,7 @@ function addSelectItem(selector, items) {
 // 函数： 将选项放入对应的按钮内
 function addProgramItem(ul, programs) {
     ul.empty();
+    ul.append(`<li value=0><a href="#">全部</a></li>`);
     for (var count = 0; count < programs.length; count++) {
         ul.append(`<li value="${count+1}"><a href="#">${programs[count]}</a></li>`);
     }
@@ -140,17 +148,19 @@ function setProgramsValue(index) {
 }
 
 function fetchResourceData() {
-    var programs = $('#programs-filters').val()-1;
-    var campus = $('#campus-filters').val()-1;
-    var school = $('#school-filters').val()-1;
-    var college = $('#college-filters').val()-1;
-    var adviser = $('#adviser-filters').val();
-    var firstChannel = $('#first-channel-filters').val()-1;
-    var secondChannel = $('#second-channel-filters').val()-1;
-    var thirdChannel = $('#third-channel-filters').val()-1;
-
+    var programsIndex = $('#programs-filters').val()-1;
+    var campusIndex = $('#campus-filters').val()-1;
+    var schoolIndex = $('#school-filters').val()-1;
+    var collegeIndex = $('#college-filters').val()-1;
+    var adviserIndex = $('#adviser-filters').val();
+    var firstChannelIndex = $('#first-channel-filters').val()-1;
+    var secondChannelIndex = $('#second-channel-filters').val()-1;
+    var thirdChannelIndex = $('#third-channel-filters').val()-1;
+    var loginTimeStart = $('#login-time-range-filters').data('daterangepicker').startDate._d.getTime();
+    var loginTimeEnd = $('#login-time-range-filters').data('daterangepicker').endDate._d.getTime();
+    
     $.ajax({
-        url: 'resourcePool/showRresource/managerSelectorOption/getResourceData?programs='+programs+"&campus="+campus+"&school="+school+"&college="+college+"&adviser="+adviser+"&firstChannel="+firstChannel+"&secondChannel="+secondChannel+"&thirdChannel="+thirdChannel,
+        
         type: 'GET',
         success: function (res) {
             addResourceData(res);

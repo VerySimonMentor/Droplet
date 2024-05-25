@@ -27,9 +27,9 @@ $(document).ready(function() {
     $('#add-item').click(function() {
         // addFirstLevelItem('新菜单项', ['新子菜单项1', '新子菜单项2']);
         //获取"#login-time-filters").data('daterangepicker')的startDate属性，并转换为时间戳
-        console.log($("#login-time-filters").data('daterangepicker').startDate._d.getTime());
+        console.log($("#login-time-range-filters").data('daterangepicker').startDate._d.getTime());
         //获取"#login-time-filters").data('daterangepicker')的ednDate属性，在此基础上加一天，并转换为时间戳
-        console.log($("#login-time-filters").data('daterangepicker').endDate._d.getTime());
+        console.log($("#login-time-range-filters").data('daterangepicker').endDate._d.getTime());
     });
 
     // 函数：创建完整的一级菜单项（包含二级菜单项）
