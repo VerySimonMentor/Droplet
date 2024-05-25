@@ -4,16 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="./static/manage.css">
+<link rel="stylesheet" href="./static/resource-pool.css">
 <link rel="icon" href="./static/img/logo.png" type="image/png">
+
+
 
 <title>Mentor OA</title>
 
 <script src="./script/jquery-3.7.1.js"></script>
 <!-- <script src="./script/manage.js"></script> -->
 <script src="./script/sidebar.js"></script>
+<script src="./script/resource-pool.js"></script>
+
+<script type="text/javascript" src="script/moment.min.js"></script>
+<script type="text/javascript" src="script/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./static/daterangepicker.css" />
+
 </head>
 <body>
 
+
+<!-- 共用的头部 -->
 <div class="header">
   <img src="./static/img/logo.png" alt="logo">
   <!-- alt是替换文本，当无法加载图片时，会显示该文本 -->
@@ -29,6 +40,7 @@
   </ul>
 
   <div class="actions">
+    
     <button id="user-information">A</button>
   </div>
 </div>
@@ -77,6 +89,65 @@
     
   </ul>
   <div class="sidebar-btn">☰</div>
+</div>
+
+<div class="main-content">
+  <div class="resource-pool">
+    <div class="show-resource">
+      <div class="filters">
+        <ul id="programs-filters">
+        </ul>
+
+        <label for="campus-filters">所属分校:</label>
+        <select id="campus-filters">
+        </select>
+        
+        <label for="school-filters">所属学校:</label>
+        <select id="school-filters">
+        </select>
+  
+        <label for="college-filters">所属学院:</label>
+        <select id="college-filters">
+        </select>
+  
+        <label for="adviser-filters">所属顾问:</label>
+        <select id="adviser-filters">
+        </select>
+  
+        <label for="first-channel-filters">一级渠道:</label>
+        <select id="first-channel-filters">
+            <option>AAA</option>
+        </select>
+  
+        <label for="second-channel-filters">二级渠道:</label>
+        <select id="second-channel-filters">
+            <option>AAA</option>
+        </select>
+  
+        <label for="third-channel-filters">三级渠道:</label>
+        <select id="third-channel-filters">
+            <option>AAA</option>
+        </select>
+  
+        <label for="login-time-filters">录入时间:</label>
+        <input type="text" id="login-time-filters" value="01/01/2024 - 01/01/2024" />
+  
+        <label for="assign-time">分配时间:</label>
+        <input type="text" id="assign-time" placeholder="2021/12/12 - 2021/12/23">
+  
+        <input type="text" id="search" placeholder="按照美名/手机号/微信号/QQ号搜索">
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<div>
+  <button id="add-item" style = "position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);">Add Menu Item</button>
 </div>
 
 
