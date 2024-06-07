@@ -1,30 +1,17 @@
-$(document).ready(function() {
-    $('.sidebar-item').click(function() {
-        // 收起除当前点击的二级菜单之外的所有二级菜单
-        $('.sidebar-second-level').not($(this).next()).slideUp();
-        // 切换当前点击的二级菜单的显示状态
-        $(this).next('.sidebar-second-level').slideToggle();
-    });
+$(document).ready(function () {
 
-    $('.sidebar-second-level a').click(function(e) {
+    $('.sidebar-second-level a').click(function (e) {
         // 阻止子菜单链接的默认行为
         e.stopPropagation();
-        // 移除所有子菜单项的激活状态
-        $('.sidebar-second-level a').removeClass('active');
-        // 移除所有父菜单项的激活状态
-        $('.sidebar-item').removeClass('active');
-        // 添加当前子菜单项的激活状态
-        $(this).addClass('active');
-        // 添加父菜单项的激活状态
-        $(this).closest('.sidebar-second-level').prev('.sidebar-item').addClass('active');
+        
     });
 
-    $('.sidebar-btn').click(function() {
-        $('.sidebar').toggleClass('hidden');
+    $('.sidebar-btn').click(function () {
+        $('#sidebar').toggleClass('hidden');
         $('.main-content').toggleClass('hidden');
     });
 
-    $('#add-item').click(function() {
+    $('#add-item').click(function () {
         // addFirstLevelItem('新菜单项', ['新子菜单项1', '新子菜单项2']);
         //获取"#login-time-filters").data('daterangepicker')的startDate属性，并转换为时间戳
         console.log($("#login-time-range-filters").data('daterangepicker').startDate._d.getTime());
@@ -55,12 +42,12 @@ $(document).ready(function() {
         $('.sidebar-first-level').append(firstLevelItem);
 
         // 重新绑定事件处理函数
-        $('.sidebar-item').off('click').on('click', function() {
+        $('.sidebar-item').off('click').on('click', function () {
             $('.sidebar-second-level').not($(this).next()).slideUp();
             $(this).next('.sidebar-second-level').slideToggle();
         });
 
-        $('.sidebar-second-level a').off('click').on('click', function(e) {
+        $('.sidebar-second-level a').off('click').on('click', function (e) {
             e.stopPropagation();
             $('.sidebar-second-level a').removeClass('active');
             $('.sidebar-item').removeClass('active');
@@ -71,3 +58,25 @@ $(document).ready(function() {
 
 });
 
+
+
+
+function chooseSidebar(ownId) {
+    // 收起除当前点击的二级菜单之外的所有二级菜单
+    $('#sidebar-first-level').not($(`#${ownId}`)).find('.sidebar-second-level').slideUp();
+    // 切换当前点击的二级菜单的显示状态
+    $('#'+ownId).find('.sidebar-second-level').slideToggle();
+}
+
+
+
+function chooseSubSidebar(subOwnId, subRelateId) {
+    // 移除所有子菜单项的激活状态
+    $('.sidebar-second-level a').removeClass('active');
+    // 移除所有父菜单项的激活状态
+    $('#sidebar-first-level a').removeClass('active');
+    // 添加当前子菜单项的激活状态
+    $(`#${subOwnId} a`).addClass('active');
+    // 添加父菜单项的激活状态
+    $(`#${subOwnId}`).closest('.sidebar-second-level').prev('a').addClass('active');
+}

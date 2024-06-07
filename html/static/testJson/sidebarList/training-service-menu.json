@@ -1,0 +1,28 @@
+{
+"sidebarList":[
+    {"name":"资源池", "ownId":"resource-pool-sidebar", "relateId":"", "subSidebar":[
+        {"subName":"查看资源", "subOwnId":"show-resource-sidebar", "subRelateId":"show-resource"},
+        {"subName":"分配资源", "subOwnId":"allocate-resource-sidebar", "subRelateId":"allocate-resource"},
+        {"subName":"录入资源", "subOwnId":"input-resource-sidebar", "subRelateId":"input-resource"},
+        {"subName":"跟进资源", "subOwnId":"follow-resource-sidebar", "subRelateId":"follow-resource"}
+    ]},
+    {"name":"教务管理", "ownId":"educational-management-sidebar", "relateId":"", "subSidebar":[
+        {"subName":"教务管理1", "subOwnId":"educational-management-1-sidebar", "subRelateId":"educational-management-1"},
+        {"subName":"教务管理2", "subOwnId":"educational-management-2-sidebar", "subRelateId":"educational-management-2"},
+        {"subName":"教务管理3", "subOwnId":"educational-management-3-sidebar", "subRelateId":"educational-management-3"},
+        {"subName":"教务管理4", "subOwnId":"educational-management-4-sidebar", "subRelateId":"educational-management-4"}
+    ]},
+    {"name":"个人管理", "ownId":"personal-management-sidebar", "relateId":"", "subSidebar":[
+        {"subName":"个人管理1", "subOwnId":"personal-management-1-sidebar", "subRelateId":"personal-management-1"},
+        {"subName":"个人管理2", "subOwnId":"personal-management-2-sidebar", "subRelateId":"personal-management-2"},
+        {"subName":"个人管理3", "subOwnId":"personal-management-3-sidebar", "subRelateId":"personal-management-3"},
+        {"subName":"个人管理4", "subOwnId":"personal-management-4-sidebar", "subRelateId":"personal-management-4"}
+    ]},
+    {"name":"后台管理", "ownId":"backstage-management-sidebar", "relateId":"", "subSidebar":[
+        {"subName":"后台管理1", "subOwnId":"backstage-management-1-sidebar", "subRelateId":"backstage-management-1"},
+        {"subName":"后台管理2", "subOwnId":"backstage-management-2-sidebar", "subRelateId":"backstage-management-2"},
+        {"subName":"后台管理3", "subOwnId":"backstage-management-3-sidebar", "subRelateId":"backstage-management-3"},
+        {"subName":"后台管理4", "subOwnId":"backstage-management-4-sidebar", "subRelateId":"backstage-management-4"}
+    ]}
+]
+}

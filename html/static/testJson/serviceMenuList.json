@@ -1,0 +1,8 @@
+{
+"serviceMenuList":[
+    {"name":"培训业务", "ownId":"training-service-menu", "relateId":"training-service", "scripts":["./static/script/show-resource.js"]},
+    {"name":"知识库", "ownId":"knowledge-base-menu", "relateId":"knowledge-base", "scripts":[]},
+    {"name":"工作台", "ownId":"workbench-menu", "relateId":"workbench", "scripts":[]},
+    {"name":"保分业务", "ownId":"ensure-scoring-service-menu", "relateId":"ensure-scoring-service", "scripts":[]}
+]
+}
