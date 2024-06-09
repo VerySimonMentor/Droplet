@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="./lib/daterangepicker.css" />
     <!-- <link rel="stylesheet" href="./static/css/manage.css"> -->
     <link rel="stylesheet" href="./static/css/resource-pool.css">
+    <link rel="stylesheet" href="./static/css/show-resource.css">
     <link rel="stylesheet" href="./static/css/index.css">
     <link rel="stylesheet" href="./static/css/sidebar.css">
     <link rel="icon" href="./static/img/logo.png" type="image/png">
@@ -56,24 +57,11 @@
             <div class="sidebar-btn">☰</div>
         </div>
 
-        <div class="main-content">
+        <div id="main-content">
             <div class="resource-pool">
                 <div class="show-resource">
                     <div class="filters">
-                        <ul id="programs-filters">
-                        </ul>
-
-                        
-                        <label for="login-time-range-filters">录入时间:</label>
-                        <input type="text" id="login-time-range-filters" value="YYYY/MM/DD" />
-
-                        <label for="first-assign-checkbox">首次分配:</label>
-                        <input type="checkbox" id="first-assign-checkbox" />
-
-                        <label for="assign-time-range-filters">分配时间:</label>
-                        <input type="text" id="assign-time-range-filters" value="YYYY/MM/DD" />
-
-                        <input type="text" id="search-filters" placeholder="按照姓名/手机号/微信号/QQ号搜索">
+                        <div class="show-resource-filters-container"></div>
                     </div>
 
                     <div class="resource-items">

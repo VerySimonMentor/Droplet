@@ -136,17 +136,175 @@ function tripleSelectFilter(id1, label1, id2, label2, id3, label3, options) {
 // 返回一个日期范围选择器的html对象（jquery对象）,其中包含一个日期范围选择器和一个label
 function dateRangeFilter(id, label) {
     var $dateRange = $(`<input id="${id}" type="text" class="form-control">`);
-    var $label = $(`<label for="${id}">${label}</label>`);
-
+    var $label = $(`<label for="${id}" value=true>${label}</label>`);
+    $dateRange.data('clear', true);
     $dateRange.daterangepicker();
+    $dateRange.val('');
 
     $dateRange.on('apply.daterangepicker', function (ev, picker) {
-        $(this).val(picker.startDate.format('YYYY-MM-DD') + ' ~ ' + picker.endDate.format('YYYY-MM-DD'));
+        $(this).data('clear', false);
+    });
+
+    $dateRange.on('clear.daterangepicker', function (ev, picker) {
+        $(this).val('');
+        $(this).data('clear', true);
     });
 
     $dateRange.on('cancel.daterangepicker', function (ev, picker) {
-        $(this).val('');
+        if ($(this).data('clear')) {
+            $(this).val('');
+        }
+    });
+
+    $dateRange.on('outsideClick.daterangepicker', function (ev, picker) {
+        if ($(this).data('clear')) {
+            $(this).val('');
+        }
     });
 
     return [$label, $dateRange];
+}
+
+
+// chechbox
+function singleCheckboxFilter(id, label) {
+    var $checkbox = $(`<input type="checkbox" id="${id}" class="form-control">`);
+    var $label = $(`<label for="${id}">${label}</label>`);
+    return [$label, $checkbox];
+}
+
+
+// search input
+function searchInputFilter(id, label, placeholder) {
+    var $input = $(`<input id="${id}" type="text" class="form-control" placeholder="${placeholder}">`);
+    if (label) {
+        var $label = $(`<label for="${id}">${label}</label>`);
+        return [$label, $input];
+    } else {
+        return $input;
+    }
+}
+
+//二级页签筛选器
+function doubleTabFilter(id, subClass, options) {
+    // var $tabFilter = $(`<ul id="${id}"></ul>`);
+    // $tabFilter.append(`<li value=0><a href="#">全部</a></li>`);
+    // for (let i = 0; i < options.length; i++) {
+    //     $tabFilter.append(`<li value="${options[i].id}"><a href="#">${options[i].name}</a></li>`);
+    // }
+
+    // $tabFilter.on('click', 'li', function (e) {
+    //     $(this).addClass('active').siblings().removeClass('active');
+    // });
+
+
+    // return $tabFilter;
+
+    // var $tabFilter = $(`<ul class="tab-filter"></ul>`);
+    // var $subTabFilter = $(`<ul class="sub-tab"></ul>`).hide();
+
+    // $tabFilter.append(`<li value=0><a href="#">全部</a></li>`);
+    // for (let i = 0; i < options.length; i++) {
+    //     $tabFilter.append(`<li value="${options[i].id}"><a href="#">${options[i].name}</a></li>`);
+    // }
+
+    // $tabFilter.on('click', 'li', function (e) {
+    //     e.preventDefault();
+    //     var selectedId = $(this).attr('value');
+    //     $(this).addClass('active').siblings().removeClass('active');
+    //     $subTabFilter.empty().hide();
+
+    //     if (selectedId != 0) {
+    //         var selectedOption = options.find(option => option.id === selectedId);
+    //         if (selectedOption && selectedOption.subOptions) {
+    //             for (let j = 0; j < selectedOption.subOptions.length; j++) {
+    //                 $subTabFilter.append(`<li value="${selectedOption.subOptions[j].id}"><a href="#">${selectedOption.subOptions[j].name}</a></li>`);
+    //             }
+    //             $subTabFilter.slideDown();
+    //         }
+    //     }
+    // });
+
+    // $subTabFilter.on('click', 'li', function (e) {
+    //     e.preventDefault();
+    //     $(this).addClass('active').siblings().removeClass('active');
+    // });
+
+    // return [$tabFilter, $subTabFilter];
+
+
+    // 建立页签元素
+    var $tabFilter = $(`<ul id="${id}"></ul>`);
+    var $allTab = $(`<li value=0><a href="#" class='active'>全部</a></li>`);
+    $allTab.on('click', function (event) {
+        event.stopPropagation(); // 防止事件冒泡
+        chooseAllTab(id, $(this).val(), subClass, $(this));
+    });
+    $tabFilter.append($allTab);
+    // 遍历options
+    for (let i = 0; i < options.length; i++) {
+        let optionItem = options[i]; // 使用let代替var
+        // 创建li元素
+        var $newOptionItem = $(`<li value="${optionItem.id}"><a href="#">${optionItem.name}</a></li>`);
+
+        // 创建子菜单的ul元素
+        var $subMenu = $(`<ul class="${subClass}"></ul>`);
+        // 遍历子菜单
+        for (let j = 0; j < optionItem.subOptions.length; j++) {
+            let subItem = optionItem.subOptions[j]; // 使用let代替var
+            // 创建子菜单的li元素
+            var $newSubMenuItem = $(`<li value="${subItem.id}"><a href="#">${subItem.name}</a></li>`);
+            $newSubMenuItem.on('click', function (event) {
+                event.stopPropagation(); // 防止事件冒泡
+                chooseSubTab(id, $(this), subClass,);
+            });
+            // 将子菜单li元素添加到子菜单ul元素中
+            $subMenu.append($newSubMenuItem);
+        }
+
+        // 将子菜单ul元素添加到主菜单li元素中
+        $newOptionItem.append($subMenu);
+
+        // 为主菜单li元素添加click事件处理函数
+        $newOptionItem.on('click', function (event) {
+            event.stopPropagation(); // 防止事件冒泡
+            chooseTab(id, $(this).val(), subClass);
+        });
+
+        // 将主菜单li元素添加到sidebar ul元素中
+        $tabFilter.append($newOptionItem);
+    }
+    return $tabFilter
+}
+function chooseTab(id, tabVal, subClass) {
+    // 收起除当前点击的二级菜单之外的所有二级菜单
+    $(`#${id} li`).filter(function() {
+        return $(this).val() !== tabVal;
+    }).find(`.${subClass}`).slideUp();
+    // 切换当前点击的二级菜单的显示状态
+    $(`#${id} li`).filter(function() {
+        return $(this).val() === tabVal;
+    }).find(`.${subClass}`).slideToggle();
+}
+function chooseSubTab(id, that,subClass) {
+    // 移除所有子菜单项的激活状态
+    $(`.${subClass} a`).removeClass('active');
+    // 移除所有父菜单项的激活状态
+    $(`#${id} a`).removeClass('active');
+    // 添加当前子菜单项的激活状态
+    that.find('a').addClass('active');
+    // 添加父菜单项的激活状态
+    that.parent().prev('a').addClass('active');
+}
+function chooseAllTab(id, tabVal, subClass, that) {
+    // 收起除当前点击的二级菜单之外的所有二级菜单
+    $(`#${id} li`).filter(function() {
+        return $(this).val() !== tabVal;
+    }).find(`.${subClass}`).slideUp();
+    // 移除所有子菜单项的激活状态
+    $(`.${subClass} a`).removeClass('active');
+    // 移除所有父菜单项的激活状态
+    $(`#${id} a`).removeClass('active');
+    // 添加父菜单项的激活状态
+    that.find('a').addClass('active');
 }

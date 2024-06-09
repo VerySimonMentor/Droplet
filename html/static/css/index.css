@@ -72,11 +72,11 @@ td {
     border-radius: 50%;
 }
 
-.main-content {
+#main-content {
     margin-left: 330px;
     transition: transform 0.3s ease;
 }
 
-.main-content.hidden {
+#main-content.hidden {
     transform: translateX(-290px);
 }
