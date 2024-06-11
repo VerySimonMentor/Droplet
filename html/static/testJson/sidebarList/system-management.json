@@ -7,22 +7,22 @@
             "subSidebar": [
                 {
                     "subName": "成员与部门",
-                    "subOwnId": "show-resource-sidebar",
-                    "subRelateId": "show-resource",
+                    "subOwnId": "user-department-sidebar",
+                    "subRelateId": "user-department",
+                    "scripts": ["./static/script/systemManagement/organizationManagement/userDepartment.js"],
+                    "styles": []
+                },
+                {
+                    "subName": "角色模板",
+                    "subOwnId": "role-templates-sidebar",
+                    "subRelateId": "role-templates",
                     "scripts": [],
                     "styles": []
                 },
                 {
-                    "subName": "角色与权限",
-                    "subOwnId": "allocate-resource-sidebar",
-                    "subRelateId": "allocate-resource",
-                    "scripts": [],
-                    "styles": []
-                },
-                {
-                    "subName": "字段管理",
-                    "subOwnId": "input-resource-sidebar",
-                    "subRelateId": "input-resource",
+                    "subName": "用户字段管理",
+                    "subOwnId": "user-field-management-sidebar",
+                    "subRelateId": "user-field-management",
                     "scripts": [],
                     "styles": []
                 }

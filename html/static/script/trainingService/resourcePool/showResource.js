@@ -43,11 +43,11 @@ $(document).ready(function () {
     $('#properties-filter-apply').click(function () {
         applyPropertiesFilter();
     });
-    fetchResourceProperties();
+    initShowResource()
 });
 
-function init() {
-    
+function initShowResource() {
+    fetchResourceProperties();
 }
 
 //----------------------------------------------新重构部分-------------------------------------------↓↓↓

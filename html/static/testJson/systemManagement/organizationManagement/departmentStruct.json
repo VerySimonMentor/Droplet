@@ -1,0 +1,61 @@
+{
+    "departmentStruct": [
+        {
+            "id": 1,
+            "name": "部门1",
+            "parentId": 0,
+            "children": [
+                {
+                    "id": 2,
+                    "name": "部门1-1",
+                    "parentId": 1,
+                    "children": [
+                        {
+                            "id": 3,
+                            "name": "部门1-1-1",
+                            "parentId": 2,
+                            "children": []
+                        },
+                        {
+                            "id": 4,
+                            "name": "部门1-1-2",
+                            "parentId": 2,
+                            "children": []
+                        },
+                        {
+                            "id": 5,
+                            "name": "部门1-1-3",
+                            "parentId": 2,
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": 6,
+                    "name": "部门1-2",
+                    "parentId": 1,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "name": "部门2",
+            "parentId": 0,
+            "children": [
+                {
+                    "id": 8,
+                    "name": "部门2-1",
+                    "parentId": 7,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "name": "部门3",
+            "parentId": 0,
+            "children": []
+        }
+    ]
+}

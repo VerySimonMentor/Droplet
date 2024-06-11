@@ -2,86 +2,171 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar Example</title>
+    <title>级联表格</title>
     <style>
-        body {
-            display: flex;
-            margin: 0;
-            font-family: Arial, sans-serif;
+        .table-container {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
         }
-
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
+        .table-container th, .table-container td {
+            border: 1px solid #ddd;
+            padding: 8px;
         }
-
-        .sidebar.hidden {
-            transform: translateX(-100%);
+        .table-container th {
+            background-color: #f2f2f2;
+            text-align: left;
         }
-
-        .hide-btn, .show-btn {
-            background-color: #444;
-            color: white;
-            border: none;
-            padding: 10px;
+        .arrow {
             cursor: pointer;
-            margin-bottom: 10px;
-            transition: background-color 0.3s ease;
         }
-
-        .hide-btn:hover, .show-btn:hover {
-            background-color: #555;
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 20px;
-        }
-
-        .show-btn {
+        .hidden {
             display: none;
-            position: absolute;
-            top: 10px;
-            left: 10px;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <div id="sidebar" class="sidebar">
-        <button id="hideBtn" class="hide-btn">Hide</button>
-        <ul>
-            <li><a href="#section1">Section 1</a></li>
-            <li><a href="#section2">Section 2</a></li>
-            <li><a href="#section3">Section 3</a></li>
-        </ul>
-    </div>
-    <div id="main-content" class="main-content">
-        <button id="showBtn" class="show-btn">Show Sidebar</button>
-        <h1>Main Content</h1>
-        <p>This is the main content area.</p>
-    </div>
+    <table id="cascadingTable" class="table-container"></table>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebar = document.getElementById('sidebar');
-            const hideBtn = document.getElementById('hideBtn');
-            const showBtn = document.getElementById('showBtn');
-            const mainContent = document.getElementById('main-content');
+        const tableData = {
+            "departmentStruct": [
+                {
+                    "id": 1,
+                    "name": "部门1",
+                    "parentId": 0,
+                    "children": [
+                        {
+                            "id": 2,
+                            "name": "部门1-1",
+                            "parentId": 1,
+                            "children": [
+                                {
+                                    "id": 3,
+                                    "name": "部门1-1-1",
+                                    "parentId": 2,
+                                    "children": []
+                                },
+                                {
+                                    "id": 4,
+                                    "name": "部门1-1-2",
+                                    "parentId": 2,
+                                    "children": []
+                                },
+                                {
+                                    "id": 5,
+                                    "name": "部门1-1-3",
+                                    "parentId": 2,
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "id": 6,
+                            "name": "部门1-2",
+                            "parentId": 1,
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": 7,
+                    "name": "部门2",
+                    "parentId": 0,
+                    "children": [
+                        {
+                            "id": 8,
+                            "name": "部门2-1",
+                            "parentId": 7,
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "id": 9,
+                    "name": "部门3",
+                    "parentId": 0,
+                    "children": []
+                }
+            ]
+        };
 
-            hideBtn.addEventListener('click', function() {
-                sidebar.classList.add('hidden');
-                showBtn.style.display = 'block';
+        function createCascadingTable(tableId, tableData) {
+            const $table = $(`#${tableId}`);
+            const $thead = $('<thead><tr><th>ID</th><th>Name</th></tr></thead>');
+            const $tbody = $('<tbody></tbody>');
+
+            $table.append($thead).append($tbody);
+
+            function addRow(data, level) {
+                data.forEach(item => {
+                    const $tr = $(`<tr data-id="${item.id}" data-parent-id="${item.parentId}" class="level-${level}"></tr>`);
+                    const $arrow = item.children.length > 0 ? $('<span class="arrow">▶</span>') : '';
+                    const $name = $('<td></td>').css('padding-left', `${20 * level}px`);
+                    
+                    $tr.append(`<td>${item.id}</td>`);
+                    $name.append($arrow).append(` ${item.name}`);
+                    $tr.append($name);
+
+                    $tbody.append($tr);
+
+                    if (item.children.length > 0) {
+                        addRow(item.children, level + 1);
+                    }
+                });
+            }
+
+            addRow(tableData.departmentStruct, 0);
+
+            $table.on('click', '.arrow', function () {
+                const $arrow = $(this);
+                const $tr = $arrow.closest('tr');
+                const id = $tr.data('id');
+                const level = parseInt($tr.attr('class').match(/level-(\d+)/)[1], 10);
+
+                if ($arrow.text() === '▶') {
+                    $arrow.text('▼');
+                    showChildren(id, level);
+                } else {
+                    $arrow.text('▶');
+                    hideChildren(id);
+                }
             });
 
-            showBtn.addEventListener('click', function() {
-                sidebar.classList.remove('hidden');
-                showBtn.style.display = 'none';
-            });
+            function showChildren(parentId, level) {
+                $table.find(`tr[data-parent-id=${parentId}]`).each(function () {
+                    const $child = $(this);
+                    $child.removeClass('hidden');
+
+                    if ($child.find('.arrow').text() === '▼') {
+                        showChildren($child.data('id'), level + 1);
+                    }
+                });
+            }
+
+            function hideChildren(parentId) {
+                $table.find(`tr[data-parent-id=${parentId}]`).each(function () {
+                    const $child = $(this);
+                    $child.addClass('hidden');
+                    hideChildren($child.data('id'));
+                });
+            }
+        }
+
+        function checkHeaderData(header, data) {
+            return data.departmentStruct.every(item => 
+                Object.keys(item).filter(key => key !== 'parentId' && key !== 'children').length === header.length
+            );
+        }
+
+        $(document).ready(function () {
+            const tableHeader = ['ID', 'Name'];
+            if (checkHeaderData(tableHeader, tableData)) {
+                createCascadingTable('cascadingTable', tableData);
+            } else {
+                console.error('表头和数据不匹配');
+            }
         });
     </script>
 </body>
