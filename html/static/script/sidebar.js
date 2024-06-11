@@ -82,12 +82,12 @@ function chooseSubSidebar(fatherId, subOwnId, subRelateId) {
 
     // 隐藏所有div，除了所选的div
     $(`#${fatherId}`).children('div').not($(`#${subRelateId}`)).hide();
+    $(`#${fatherId}`).parent().children('div').not($(`#${fatherId}`)).hide();
+    $(`#${fatherId}`).show();
     $(`#${subRelateId}`).show();
 }
 
 function fetchSidebar(id) {
-    // 清空sidebar ul元素
-    $('#sidebar-first-level').empty();
     // $.ajax({
     //     url: '/sidebarList',
     //     method: 'GET',
@@ -119,6 +119,8 @@ function fetchSidebar(id) {
 
 
 function renderSidebar(sidebarList) {
+    // 清空sidebar ul元素
+    $('#sidebar-first-level').empty();
     // 遍历sidebarList
     for (let i = 0; i < sidebarList.length; i++) {
         let sidebarItem = sidebarList[i]; // 使用let代替var
@@ -138,6 +140,22 @@ function renderSidebar(sidebarList) {
             });
             // 将子菜单li元素添加到子菜单ul元素中
             $subMenu.append($newSubMenuItem);
+
+            // 获取所有相关功能的script
+            let scripts = subItem.scripts;
+            for (let k = 0; k < scripts.length; k++) {
+                // loadScriptn方法在dynamic.js中定义，用于动态加载JavaScript文件
+                // 其中自带查重功能，避免重复加载
+                loadScript(scripts[k]);
+            }
+
+            // 获取所有相关功能的style
+            let styles = subItem.styles;
+            for (let k = 0; k < styles.length; k++) {
+                // loadStyle方法在dynamic.js中定义，用于动态加载样式文件
+                // 其中自带查重功能，避免重复加载
+                loadStyle(styles[k]);
+            }
         }
 
         // 将子菜单ul元素添加到主菜单li元素中
@@ -158,6 +176,10 @@ function renderSidebar(sidebarList) {
 function renderSidebarDiv(fatherId ,sidebarList) {
     for (let i = 0; i < sidebarList.length; i++) {
         let sidebarItem = sidebarList[i];
+        // 如果已经存在，则不再创建
+        if ($(`#${sidebarItem.relateId}`).length > 0) {
+            continue;
+        }
         var $newSidebarDiv = $(`<div id="${sidebarItem.relateId}"></div>`);
         for (let j = 0; j < sidebarItem.subSidebar.length; j++) {
             let subItem = sidebarItem.subSidebar[j];

@@ -28,20 +28,13 @@ function fetchServiceMenu() {
     //         }
     //     },
     //     error: function (res) {
-            
+
     //     }
     // });
 
     //-------------------------测试-------------------------
     $.getJSON('static/testJson/serviceMenuList.json', function (res) {
         renderServiceMenu(res.serviceMenuList);
-        //获取所有相关功能的script
-        for (let i = 0; i < res.serviceMenuList.length; i++) {
-            let scripts = res.serviceMenuList[i].scripts;
-            for (let j = 0; j < scripts.length; j++) {
-                loadScript(scripts[j]);
-            }
-        }
         renderServiceDiv(res.serviceMenuList);
         if (res.serviceMenuList.length > 0) {
             //显示第一个功能的sidebar
@@ -70,6 +63,12 @@ function renderServiceMenu(serviceMenuList) {
         });
 
         $('#service-menu').append($newMenu);
+
+        // //获取所有相关功能的script
+        // let scripts = serviceMenu.scripts;
+        // for (let j = 0; j < scripts.length; j++) {
+        //     loadScript(scripts[j]);
+        // }
     }
 }
 
@@ -80,6 +79,11 @@ function chooseService(ownId, relateId) {
     $('#main-content').children('div').not(`#${relateId}`).hide();
     // 显示id为relateId的div
     $(`#${relateId}`).show();
+
+    //移除所有service-menu下的active
+    $('#service-menu a').removeClass('active');
+    //为当前service-menu添加active
+    $(`#${ownId} a`).addClass('active');
 
 }
 

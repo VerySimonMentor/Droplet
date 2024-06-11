@@ -1,4 +1,60 @@
 {
-"sidebarList":[
-]
+    "sidebarList": [
+        {
+            "name": "组织架构",
+            "ownId": "organization-management-sidebar",
+            "relateId": "organization-management",
+            "subSidebar": [
+                {
+                    "subName": "成员与部门",
+                    "subOwnId": "show-resource-sidebar",
+                    "subRelateId": "show-resource",
+                    "scripts": [],
+                    "styles": []
+                },
+                {
+                    "subName": "角色与权限",
+                    "subOwnId": "allocate-resource-sidebar",
+                    "subRelateId": "allocate-resource",
+                    "scripts": [],
+                    "styles": []
+                },
+                {
+                    "subName": "字段管理",
+                    "subOwnId": "input-resource-sidebar",
+                    "subRelateId": "input-resource",
+                    "scripts": [],
+                    "styles": []
+                }
+            ]
+        },
+        {
+            "name": "选项配置",
+            "ownId": "option-config-sidebar",
+            "relateId": "option-config",
+            "subSidebar": [
+                {
+                    "subName": "111",
+                    "subOwnId": "111111-sidebar",
+                    "subRelateId": "111111",
+                    "scripts": [],
+                    "styles": []
+                }
+            ]
+        },
+        {
+            "name": "操作日志",
+            "ownId": "system-operation-log-sidebar",
+            "relateId": "system-operation-log",
+            "subSidebar": [
+                {
+                    "subName": "222",
+                    "subOwnId": "222222-sidebar",
+                    "subRelateId": "222222",
+                    "scripts": [],
+                    "styles": []
+                }
+            ]
+        }
+    ]
 }

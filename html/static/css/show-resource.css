@@ -13,7 +13,9 @@
 
 }
 
-#programs-filters a:hover,
+#programs-filters a:hover {
+  background-color: #e9ecef;
+}
 #programs-filters a.active {
   color: #0073e6;
 }
