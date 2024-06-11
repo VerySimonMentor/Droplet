@@ -1,0 +1,29 @@
+{
+    "serviceMenuList": [
+        {
+            "name": "培训业务",
+            "ownId": "training-service-menu",
+            "relateId": "training-service"
+        },
+        {
+            "name": "知识库",
+            "ownId": "knowledge-base-menu",
+            "relateId": "knowledge-base"
+        },
+        {
+            "name": "工作台",
+            "ownId": "workbench-menu",
+            "relateId": "workbench"
+        },
+        {
+            "name": "保分业务",
+            "ownId": "ensure-scoring-service-menu",
+            "relateId": "ensure-scoring-service"
+        },
+        {
+            "name": "系统设置",
+            "ownId": "system-management-menu",
+            "relateId": "system-management"
+        }
+    ]
+}

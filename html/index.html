@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./lib/jquery-3.7.1.js"></script>
+    <script src="./lib/moment.min.js"></script>
+    <script src="./lib/daterangepicker.min.js"></script>
+
+    <script src="./static/script/dynamic.js"></script>
+    <script src="./static/script/filters.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./lib/daterangepicker.css" />
+    <!-- <link rel="stylesheet" href="./static/css/manage.css"> -->
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="stylesheet" href="./static/css/sidebar.css">
+    <link rel="icon" href="./static/img/logo.png" type="image/png">
+
+    <!-- <script src="./script/manage.js"></script> -->
+    <script src="./static/script/sidebar.js"></script>
+    <script src="./static/script/index.js"></script>
+    
+    <!-- <script src="./static/script/resource-pool.js"></script> -->
+
+    <title>Mentor OA</title>
+
+
+
+
+
+
+</head>
+
+<body>
+
+    <!-- 共用的头部 -->
+    <div class="header">
+        <img src="./static/img/logo.png" alt="logo">
+        <!-- alt是替换文本，当无法加载图片时，会显示该文本 -->
+        <ul id="service-menu">
+
+        </ul>
+
+        <div class="actions">
+
+            <button id="user-information">A</button>
+        </div>
+    </div>
+
+    <div id="my-body">
+        <div id="sidebar">
+            <ul id="sidebar-first-level">
+            </ul>
+            <div class="sidebar-btn">☰</div>
+        </div>
+
+        <div id="main-content">
+            <div class="resource-pool">
+                <div class="show-resource">
+                    <div class="filters">
+                        <div class="show-resource-filters-container"></div>
+                    </div>
+
+                    <div class="resource-items">
+                        <button id="resource-properties-display-button">设置显示条目</button>
+                        <div id="properties-filter-background">
+                            <div id="properties-filter-content">
+                                <span id="properties-filter-close">&times;</span>
+                                <!-- <h2>Filter Attributes</h2> -->
+                                <div id="properties-filter-checkboxes">
+                                    <!-- <label for="attribute1">Attribute 1:</label>
+                  <input type="checkbox" id="attribute1" name="attribute1">
+                  <br>
+                  <label for="attribute2">Attribute 2:</label>
+                  <input type="checkbox" id="attribute2" name="attribute2"> -->
+                                    <br>
+                                    <!-- Add more filters as needed -->
+                                </div>
+                                <button id="properties-filter-cancel">Cancel Filters</button>
+                                <!-- <button id="properties-filter-default">Default Filters</button> -->
+                                <button id="properties-filter-apply">Apply Filters</button>
+                            </div>
+                        </div>
+
+                        <table class="resource-items-table">
+                            <colgroup id="resource-items-colgroup">
+
+                            </colgroup>
+                            <thead>
+                                <tr id="resource-items-header">
+                                </tr>
+                            </thead>
+                            <tbody id="resource-items-body">
+                            </tbody>
+
+                        </table>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div>
+        <button id="add-item" style="position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);">Add Menu Item</button>
+    </div>
+
+
+
+
+</body>
+
+</html>

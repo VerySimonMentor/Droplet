@@ -1,0 +1,93 @@
+.sidebar-btn {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 0vh;
+    left: 290px;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    padding: 5px 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#sidebar.hidden .sidebar-btn {
+    left: 290px;
+    /* 在侧边栏隐藏时移动按钮位置 */
+}
+
+#sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+
+#sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: calc(100vh - 60px);
+    /* 60px 是头部的高度 */
+    position: fixed;
+    top: 80px;
+    left: 0;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar #sidebar-first-level {
+    list-style: none;
+    padding-left: 20px;
+}
+
+#sidebar-first-level a {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+}
+
+
+#sidebar #sidebar-first-level .sidebar-second-level {
+    display: none;
+    padding-left: 20px;
+    list-style: none;
+}
+
+#sidebar-first-level .sidebar-second-level a {
+    display: block;
+    padding: 5px 0;
+    text-decoration: none;
+    color: #333;
+}
+
+#sidebar-first-level a:hover,
+#sidebar-first-level .sidebar-second-level a:hover {
+    background-color: #e9ecef;
+}
+
+#sidebar-first-level a.active,
+#sidebar-first-level .sidebar-second-level a.active {
+    color: #0073e6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* .sidebar #sidebar-first-level .sidebar-second-level a.active, */
+#sidebar-first-level a.active {
+    color: #0073e6;
+}

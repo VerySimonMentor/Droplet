@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Example</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        .hide-btn, .show-btn {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .hide-btn:hover, .show-btn:hover {
+            background-color: #555;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .show-btn {
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar" class="sidebar">
+        <button id="hideBtn" class="hide-btn">Hide</button>
+        <ul>
+            <li><a href="#section1">Section 1</a></li>
+            <li><a href="#section2">Section 2</a></li>
+            <li><a href="#section3">Section 3</a></li>
+        </ul>
+    </div>
+    <div id="main-content" class="main-content">
+        <button id="showBtn" class="show-btn">Show Sidebar</button>
+        <h1>Main Content</h1>
+        <p>This is the main content area.</p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.getElementById('sidebar');
+            const hideBtn = document.getElementById('hideBtn');
+            const showBtn = document.getElementById('showBtn');
+            const mainContent = document.getElementById('main-content');
+
+            hideBtn.addEventListener('click', function() {
+                sidebar.classList.add('hidden');
+                showBtn.style.display = 'block';
+            });
+
+            showBtn.addEventListener('click', function() {
+                sidebar.classList.remove('hidden');
+                showBtn.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

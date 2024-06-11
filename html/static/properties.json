@@ -1,0 +1,6 @@
+{
+    "properties": [{"name": "姓名", "displayDefault": true},
+                 {"name": "电话号", "displayDefault": true},
+                 {"name": "备注", "displayDefault": false}
+    ]
+}
