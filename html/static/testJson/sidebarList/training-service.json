@@ -10,7 +10,7 @@
                     "subOwnId": "show-resource-sidebar",
                     "subRelateId": "show-resource",
                     "scripts": [
-                        "./static/script/trainingService/resourcePool/show-resource.js"
+                        "./static/script/trainingService/resourcePool/showResource.js"
                     ],
                     "styles": [
                         "./static/css/show-resource.css"

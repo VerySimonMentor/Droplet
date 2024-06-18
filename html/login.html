@@ -1,88 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar Example</title>
+    <title>数据管理系统</title>
     <style>
-        body {
-            display: flex;
-            margin: 0;
-            font-family: Arial, sans-serif;
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
-
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
         }
-
-        .sidebar.hidden {
-            transform: translateX(-100%);
+        th {
+            background-color: #f2f2f2;
         }
-
-        .hide-btn, .show-btn {
-            background-color: #444;
-            color: white;
-            border: none;
-            padding: 10px;
+        .tooltip {
+            position: relative;
+            display: inline-block;
             cursor: pointer;
-            margin-bottom: 10px;
-            transition: background-color 0.3s ease;
         }
-
-        .hide-btn:hover, .show-btn:hover {
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 300px;
             background-color: #555;
-        }
-
-        .main-content {
-            flex: 1;
-            padding: 20px;
-        }
-
-        .show-btn {
-            display: none;
+            color: #fff;
+            text-align: left;
+            border-radius: 5px;
+            padding: 5px;
             position: absolute;
-            top: 10px;
-            left: 10px;
+            z-index: 1;
+            bottom: 125%; 
+            left: 50%;
+            margin-left: -150px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-    <div id="sidebar" class="sidebar">
-        <button id="hideBtn" class="hide-btn">Hide</button>
-        <ul>
-            <li><a href="#section1">Section 1</a></li>
-            <li><a href="#section2">Section 2</a></li>
-            <li><a href="#section3">Section 3</a></li>
-        </ul>
-    </div>
-    <div id="main-content" class="main-content">
-        <button id="showBtn" class="show-btn">Show Sidebar</button>
-        <h1>Main Content</h1>
-        <p>This is the main content area.</p>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebar = document.getElementById('sidebar');
-            const hideBtn = document.getElementById('hideBtn');
-            const showBtn = document.getElementById('showBtn');
-            const mainContent = document.getElementById('main-content');
-
-            hideBtn.addEventListener('click', function() {
-                sidebar.classList.add('hidden');
-                showBtn.style.display = 'block';
-            });
-
-            showBtn.addEventListener('click', function() {
-                sidebar.classList.remove('hidden');
-                showBtn.style.display = 'none';
-            });
-        });
-    </script>
+    <h1>数据管理系统</h1>
+    <table>
+        <tr>
+            <th>姓名</th>
+            <th>电话号</th>
+            <th>微信名</th>
+            <th>微信号</th>
+            <th>QQ号</th>
+            <th>项目</th>
+            <th>所属分校-所属顾问</th>
+            <th>学校类型-所属学校-所属学院/入学年份</th>
+            <th>录入时间</th>
+            <th>分配时间</th>
+            <th>一级渠道-二级渠道-三级渠道</th>
+            <th>跟进状态</th>
+            <th>情况说明</th>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>1234567890</td>
+            <td>张三微信</td>
+            <td>zhangsan123</td>
+            <td>123456</td>
+            <td>项目A, 项目B</td>
+            <td>
+                <span class="tooltip">分校1-顾问1, 分校2-顾问2
+                    <span class="tooltiptext">分校1: 顾问1<br>分校2: 顾问2</span>
+                </span>
+            </td>
+            <td>
+                <span class="tooltip">类型1-学校1-学院1/2020, 类型2-学校2-学院2/2021
+                    <span class="tooltiptext">类型1: 学校1-学院1/2020<br>类型2: 学校2-学院2/2021</span>
+                </span>
+            </td>
+            <td>2024-06-01</td>
+            <td>
+                <span class="tooltip">2024-06-02-分配人1-分校1-顾问1, 2024-06-03-分配人2-分校2-顾问2
+                    <span class="tooltiptext">2024-06-02: 分配人1-分校1-顾问1<br>2024-06-03: 分配人2-分校2-顾问2</span>
+                </span>
+            </td>
+            <td>渠道1-渠道2-渠道3</td>
+            <td>已跟进</td>
+            <td>
+                <span class="tooltip">情况1, 情况2
+                    <span class="tooltiptext">2024-06-01 作者1: 情况1<br>2024-06-02 作者2: 情况2</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>1234567890</td>
+            <td>张三微信</td>
+            <td>zhangsan123</td>
+            <td>123456</td>
+            <td>项目A, 项目B</td>
+            <td>
+                <span class="tooltip">分校1-顾问1, 分校2-顾问2
+                    <span class="tooltiptext">分校1: 顾问1<br>分校2: 顾问2</span>
+                </span>
+            </td>
+            <td>
+                <span class="tooltip">类型1-学校1-学院1/2020, 类型2-学校2-学院2/2021
+                    <span class="tooltiptext">类型1: 学校1-学院1/2020<br>类型2: 学校2-学院2/2021</span>
+                </span>
+            </td>
+            <td>2024-06-01</td>
+            <td>
+                <span class="tooltip">2024-06-02-分配人1-分校1-顾问1, 2024-06-03-分配人2-分校2-顾问2
+                    <span class="tooltiptext">2024-06-02: 分配人1-分校1-顾问1<br>2024-06-03: 分配人2-分校2-顾问2</span>
+                </span>
+            </td>
+            <td>渠道1-渠道2-渠道3</td>
+            <td>已跟进</td>
+            <td>
+                <span class="tooltip">情况1, 情况2
+                    <span class="tooltiptext">2024-06-01 作者1: 情况1<br>2024-06-02 作者2: 情况2</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>1234567890</td>
+            <td>张三微信</td>
+            <td>zhangsan123</td>
+            <td>123456</td>
+            <td>项目A, 项目B</td>
+            <td>
+                <span class="tooltip">分校1-顾问1, 分校2-顾问2
+                    <span class="tooltiptext">分校1: 顾问1<br>分校2: 顾问2</span>
+                </span>
+            </td>
+            <td>
+                <span class="tooltip">类型1-学校1-学院1/2020, 类型2-学校2-学院2/2021
+                    <span class="tooltiptext">类型1: 学校1-学院1/2020<br>类型2: 学校2-学院2/2021</span>
+                </span>
+            </td>
+            <td>2024-06-01</td>
+            <td>
+                <span class="tooltip">2024-06-02-分配人1-分校1-顾问1, 2024-06-03-分配人2-分校2-顾问2
+                    <span class="tooltiptext">2024-06-02: 分配人1-分校1-顾问1<br>2024-06-03: 分配人2-分校2-顾问2</span>
+                </span>
+            </td>
+            <td>渠道1-渠道2-渠道3</td>
+            <td>已跟进</td>
+            <td>
+                <span class="tooltip">情况1, 情况2
+                    <span class="tooltiptext">2024-06-01 作者1: 情况1<br>2024-06-02 作者2: 情况2</span>
+                </span>
+            </td>
+        </tr>
+        <!-- 其他数据行可以按相同格式添加 -->
+    </table>
 </body>
 </html>

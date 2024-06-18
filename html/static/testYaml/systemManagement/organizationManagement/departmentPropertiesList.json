@@ -1,0 +1,29 @@
+{
+    "departmentPropertiesList": [
+        {
+            "name": "部门名称",
+            "propertyIndex":1,
+            "displayDefault":true
+        },
+        {
+            "name": "部门负责人",
+            "propertyIndex":3,
+            "displayDefault":true
+        },
+        {
+            "name": "部门人数",
+            "propertyIndex":4,
+            "displayDefault":true
+        },
+        {
+            "name": "id",
+            "propertyIndex":2,
+            "displayDefault":true
+        },
+        {
+            "name": "部门描述",
+            "propertyIndex":5,
+            "displayDefault":true
+        }
+    ]
+}

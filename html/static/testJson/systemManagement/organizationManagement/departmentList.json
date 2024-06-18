@@ -1,0 +1,253 @@
+{
+    "departmentList": [
+        [
+            {
+                "name": "部门名称",
+                "value": "部门1"
+            },
+            {
+                "name": "id",
+                "value": 1
+            },
+            {
+                "name": "部门负责人",
+                "value": "负责人1"
+            },
+            {
+                "name": "部门人数",
+                "value": "10"
+            },
+            {
+                "name": "部门描述",
+                "value": "部门描述1"
+            },
+            {
+                "name": "parentId",
+                "value": 0
+            },
+            {
+                "name": "children",
+                "value": [
+                    [
+                        {
+                            "name": "部门名称",
+                            "value": "部门1-1"
+                        },
+                        {
+                            "name": "id",
+                            "value": 11
+                        },
+                        {
+                            "name": "部门负责人",
+                            "value": "负责人1-1"
+                        },
+                        {
+                            "name": "部门人数",
+                            "value": "11"
+                        },
+                        {
+                            "name": "部门描述",
+                            "value": "部门描述1-1"
+                        },
+                        {
+                            "name": "parentId",
+                            "value": 1
+                        },
+                        {
+                            "name": "children",
+                            "value": [
+                                [
+                                    {
+                                        "name": "部门名称",
+                                        "value": "部门1-1-1"
+                                    },
+                                    {
+                                        "name": "id",
+                                        "value": 111
+                                    },
+                                    {
+                                        "name": "部门负责人",
+                                        "value": "负责人1-1-1"
+                                    },
+                                    {
+                                        "name": "部门人数",
+                                        "value": "111"
+                                    },
+                                    {
+                                        "name": "部门描述",
+                                        "value": "部门描述1-1-1"
+                                    },
+                                    {
+                                        "name": "parentId",
+                                        "value": 11
+                                    }
+                                ],
+                                [
+                                    {
+                                        "name": "部门名称",
+                                        "value": "部门1-1-2"
+                                    },
+                                    {
+                                        "name": "id",
+                                        "value": 112
+                                    },
+                                    {
+                                        "name": "部门负责人",
+                                        "value": "负责人1-1-2"
+                                    },
+                                    {
+                                        "name": "部门人数",
+                                        "value": "112"
+                                    },
+                                    {
+                                        "name": "部门描述",
+                                        "value": "部门描述1-1-2"
+                                    },
+                                    {
+                                        "name": "parentId",
+                                        "value": 11
+                                    }
+                                ]
+                            ]
+                        }
+                    ],
+                    [
+                        {
+                            "name": "部门名称",
+                            "value": "部门1-2"
+                        },
+                        {
+                            "name": "id",
+                            "value": 12
+                        },
+                        {
+                            "name": "部门负责人",
+                            "value": "负责人1-2"
+                        },
+                        {
+                            "name": "部门人数",
+                            "value": "12"
+                        },
+                        {
+                            "name": "部门描述",
+                            "value": "部门描述1-2"
+                        },
+                        {
+                            "name": "parentId",
+                            "value": 1
+                        }
+                    ]
+                ]
+            }
+        ],
+        [
+            {
+                "name": "部门名称",
+                "value": "部门2"
+            },
+            {
+                "name": "id",
+                "value": 2
+            },
+            {
+                "name": "部门负责人",
+                "value": "负责人2"
+            },
+            {
+                "name": "部门人数",
+                "value": "20"
+            },
+            {
+                "name": "部门描述",
+                "value": "部门描述2"
+            },
+            {
+                "name": "parentId",
+                "value": 0
+            },
+            {
+                "name": "children",
+                "value": [
+                    [
+                        {
+                            "name": "部门名称",
+                            "value": "部门2-1"
+                        },
+                        {
+                            "name": "id",
+                            "value": 21
+                        },
+                        {
+                            "name": "部门负责人",
+                            "value": "负责人2-1"
+                        },
+                        {
+                            "name": "部门人数",
+                            "value": "21"
+                        },
+                        {
+                            "name": "部门描述",
+                            "value": "部门描述2-1"
+                        },
+                        {
+                            "name": "parentId",
+                            "value": 2
+                        }
+                    ],
+                    [
+                        {
+                            "name": "部门名称",
+                            "value": "部门2-2"
+                        },
+                        {
+                            "name": "id",
+                            "value": 22
+                        },
+                        {
+                            "name": "部门负责人",
+                            "value": "负责人2-2"
+                        },
+                        {
+                            "name": "部门人数",
+                            "value": "22"
+                        },
+                        {
+                            "name": "部门描述",
+                            "value": "部门描述2-2"
+                        },
+                        {
+                            "name": "parentId",
+                            "value": 2
+                        }
+                    ]
+                ]
+            }
+        ],
+        [
+            {
+                "name": "部门名称",
+                "value": "部门3"
+            },
+            {
+                "name": "id",
+                "value": 3
+            },
+            {
+                "name": "部门负责人",
+                "value": "负责人3"
+            },
+            {
+                "name": "部门人数",
+                "value": "30"
+            },
+            {
+                "name": "部门描述",
+                "value": "部门描述3"
+            },
+            {
+                "name": "parentId",
+                "value": 0
+            }
+        ]
+    ]
+}

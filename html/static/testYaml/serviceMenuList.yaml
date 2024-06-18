@@ -1,0 +1,160 @@
+serviceMenuList:
+  - name: 培训业务
+    ownId: training-service-menu
+    relateId: training-service
+    sidebarList:
+      - name: 资源池
+        ownId: resource-pool-sidebar
+        relateId: resource-pool
+        subSidebar:
+          - subName: 查看资源
+            subOwnId: show-resource-sidebar
+            subRelateId: show-resource
+            scripts:
+              - ./static/script/trainingService/resourcePool/showResource.js
+            styles:
+              - ./static/css/show-resource.css
+          - subName: 分配资源
+            subOwnId: allocate-resource-sidebar
+            subRelateId: allocate-resource
+            scripts: []
+            styles: []
+          - subName: 录入资源
+            subOwnId: input-resource-sidebar
+            subRelateId: input-resource
+            scripts: []
+            styles: []
+          - subName: 跟进资源
+            subOwnId: follow-resource-sidebar
+            subRelateId: follow-resource
+            scripts: []
+            styles: []
+
+      - name: 教务管理
+        ownId: educational-management-sidebar
+        relateId: educational-management
+        subSidebar:
+          - subName: 教务管理1
+            subOwnId: educational-management-1-sidebar
+            subRelateId: educational-management-1
+            scripts: []
+            styles: []
+          - subName: 教务管理2
+            subOwnId: educational-management-2-sidebar
+            subRelateId: educational-management-2
+            scripts: []
+            styles: []
+          - subName: 教务管理3
+            subOwnId: educational-management-3-sidebar
+            subRelateId: educational-management-3
+            scripts: []
+            styles: []
+          - subName: 教务管理4
+            subOwnId: educational-management-4-sidebar
+            subRelateId: educational-management-4
+            scripts: []
+            styles: []
+      - name: 个人管理
+        ownId: personal-management-sidebar
+        relateId: personal-management
+        subSidebar:
+          - subName: 个人管理1
+            subOwnId: personal-management-1-sidebar
+            subRelateId: personal-management-1
+            scripts: []
+            styles: []
+          - subName: 个人管理2
+            subOwnId: personal-management-2-sidebar
+            subRelateId: personal-management-2
+            scripts: []
+            styles: []
+          - subName: 个人管理3
+            subOwnId: personal-management-3-sidebar
+            subRelateId: personal-management-3
+            scripts: []
+            styles: []
+          - subName: 个人管理4
+            subOwnId: personal-management-4-sidebar
+            subRelateId: personal-management-4
+            scripts: []
+            styles: []
+      - name: 后台管理
+        ownId: backstage-management-sidebar
+        relateId: backstage-management
+        subSidebar:
+          - subName: 后台管理1
+            subOwnId: backstage-management-1-sidebar
+            subRelateId: backstage-management-1
+            scripts: []
+            styles: []
+          - subName: 后台管理2
+            subOwnId: backstage-management-2-sidebar
+            subRelateId: backstage-management-2
+            scripts: []
+            styles: []
+          - subName: 后台管理3
+            subOwnId: backstage-management-3-sidebar
+            subRelateId: backstage-management-3
+            scripts: []
+            styles: []
+          - subName: 后台管理4
+            subOwnId: backstage-management-4-sidebar
+            subRelateId: backstage-management-4
+            scripts: []
+            styles: []
+
+  - name: 知识库
+    ownId: knowledge-base-menu
+    relateId: knowledge-base
+    sidebarList: []
+  - name: 工作台
+    ownId: workbench-menu
+    relateId: workbench
+    sidebarList: []
+  - name: 保分业务
+    ownId: ensure-scoring-service-menu
+    relateId: ensure-scoring-service
+    sidebarList: []
+  - name: 系统设置
+    ownId: system-management-menu
+    relateId: system-management
+    sidebarList:
+      - name: 组织架构
+        ownId: organization-management-sidebar
+        relateId: organization-management
+        subSidebar:
+          - subName: 成员与部门
+            subOwnId: user-department-sidebar
+            subRelateId: user-department
+            scripts:
+              - ./static/script/systemManagement/organizationManagement/userDepartment.js
+            styles:
+              - ./static/css/systemManagement/organizationManagement/userDepartment.css
+          - subName: 角色模板
+            subOwnId: role-templates-sidebar
+            subRelateId: role-templates
+            scripts: []
+            styles: []
+          - subName: 用户字段管理
+            subOwnId: user-field-management-sidebar
+            subRelateId: user-field-management
+            scripts: []
+            styles: []
+      - name: 选项配置
+        ownId: option-config-sidebar
+        relateId: option-config
+        subSidebar:
+          - subName: "111"
+            subOwnId: 111111-sidebar
+            subRelateId: "111111"
+            scripts: []
+            styles: []
+      - name: 操作日志
+        ownId: system-operation-log-sidebar
+        relateId: system-operation-log
+        subSidebar:
+          - subName: "222"
+            subOwnId: 222222-sidebar
+            subRelateId: "222222"
+            scripts: []
+            styles: []
