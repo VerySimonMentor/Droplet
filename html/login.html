@@ -1,173 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>级联表格</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据管理系统</title>
     <style>
-        .table-container {
-            width: 80%;
-            margin: auto;
+        table {
+            width: 100%;
             border-collapse: collapse;
         }
-        .table-container th, .table-container td {
+        th, td {
             border: 1px solid #ddd;
             padding: 8px;
-        }
-        .table-container th {
-            background-color: #f2f2f2;
             text-align: left;
         }
-        .arrow {
+        th {
+            background-color: #f2f2f2;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
             cursor: pointer;
         }
-        .hidden {
-            display: none;
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 300px;
+            background-color: #555;
+            color: #fff;
+            text-align: left;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; 
+            left: 50%;
+            margin-left: -150px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <table id="cascadingTable" class="table-container"></table>
-
-    <script>
-        const tableData = {
-            "departmentStruct": [
-                {
-                    "id": 1,
-                    "name": "部门1",
-                    "parentId": 0,
-                    "children": [
-                        {
-                            "id": 2,
-                            "name": "部门1-1",
-                            "parentId": 1,
-                            "children": [
-                                {
-                                    "id": 3,
-                                    "name": "部门1-1-1",
-                                    "parentId": 2,
-                                    "children": []
-                                },
-                                {
-                                    "id": 4,
-                                    "name": "部门1-1-2",
-                                    "parentId": 2,
-                                    "children": []
-                                },
-                                {
-                                    "id": 5,
-                                    "name": "部门1-1-3",
-                                    "parentId": 2,
-                                    "children": []
-                                }
-                            ]
-                        },
-                        {
-                            "id": 6,
-                            "name": "部门1-2",
-                            "parentId": 1,
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "id": 7,
-                    "name": "部门2",
-                    "parentId": 0,
-                    "children": [
-                        {
-                            "id": 8,
-                            "name": "部门2-1",
-                            "parentId": 7,
-                            "children": []
-                        }
-                    ]
-                },
-                {
-                    "id": 9,
-                    "name": "部门3",
-                    "parentId": 0,
-                    "children": []
-                }
-            ]
-        };
-
-        function createCascadingTable(tableId, tableData) {
-            const $table = $(`#${tableId}`);
-            const $thead = $('<thead><tr><th>ID</th><th>Name</th></tr></thead>');
-            const $tbody = $('<tbody></tbody>');
-
-            $table.append($thead).append($tbody);
-
-            function addRow(data, level) {
-                data.forEach(item => {
-                    const $tr = $(`<tr data-id="${item.id}" data-parent-id="${item.parentId}" class="level-${level}"></tr>`);
-                    const $arrow = item.children.length > 0 ? $('<span class="arrow">▶</span>') : '';
-                    const $name = $('<td></td>').css('padding-left', `${20 * level}px`);
-                    
-                    $tr.append(`<td>${item.id}</td>`);
-                    $name.append($arrow).append(` ${item.name}`);
-                    $tr.append($name);
-
-                    $tbody.append($tr);
-
-                    if (item.children.length > 0) {
-                        addRow(item.children, level + 1);
-                    }
-                });
-            }
-
-            addRow(tableData.departmentStruct, 0);
-
-            $table.on('click', '.arrow', function () {
-                const $arrow = $(this);
-                const $tr = $arrow.closest('tr');
-                const id = $tr.data('id');
-                const level = parseInt($tr.attr('class').match(/level-(\d+)/)[1], 10);
-
-                if ($arrow.text() === '▶') {
-                    $arrow.text('▼');
-                    showChildren(id, level);
-                } else {
-                    $arrow.text('▶');
-                    hideChildren(id);
-                }
-            });
-
-            function showChildren(parentId, level) {
-                $table.find(`tr[data-parent-id=${parentId}]`).each(function () {
-                    const $child = $(this);
-                    $child.removeClass('hidden');
-
-                    if ($child.find('.arrow').text() === '▼') {
-                        showChildren($child.data('id'), level + 1);
-                    }
-                });
-            }
-
-            function hideChildren(parentId) {
-                $table.find(`tr[data-parent-id=${parentId}]`).each(function () {
-                    const $child = $(this);
-                    $child.addClass('hidden');
-                    hideChildren($child.data('id'));
-                });
-            }
-        }
-
-        function checkHeaderData(header, data) {
-            return data.departmentStruct.every(item => 
-                Object.keys(item).filter(key => key !== 'parentId' && key !== 'children').length === header.length
-            );
-        }
-
-        $(document).ready(function () {
-            const tableHeader = ['ID', 'Name'];
-            if (checkHeaderData(tableHeader, tableData)) {
-                createCascadingTable('cascadingTable', tableData);
-            } else {
-                console.error('表头和数据不匹配');
-            }
-        });
-    </script>
+    <h1>数据管理系统</h1>
+    <table>
+        <tr>
+            <th>姓名</th>
+            <th>电话号</th>
+            <th>微信名</th>
+            <th>微信号</th>
+            <th>QQ号</th>
+            <th>项目</th>
+            <th>所属分校-所属顾问</th>
+            <th>学校类型-所属学校-所属学院/入学年份</th>
+            <th>录入时间</th>
+            <th>分配时间</th>
+            <th>一级渠道-二级渠道-三级渠道</th>
+            <th>跟进状态</th>
+            <th>情况说明</th>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>1234567890</td>
+            <td>张三微信</td>
+            <td>zhangsan123</td>
+            <td>123456</td>
+            <td>项目A, 项目B</td>
+            <td>
+                <span class="tooltip">分校1-顾问1, 分校2-顾问2
+                    <span class="tooltiptext">分校1: 顾问1<br>分校2: 顾问2</span>
+                </span>
+            </td>
+            <td>
+                <span class="tooltip">类型1-学校1-学院1/2020, 类型2-学校2-学院2/2021
+                    <span class="tooltiptext">类型1: 学校1-学院1/2020<br>类型2: 学校2-学院2/2021</span>
+                </span>
+            </td>
+            <td>2024-06-01</td>
+            <td>
+                <span class="tooltip">2024-06-02-分配人1-分校1-顾问1, 2024-06-03-分配人2-分校2-顾问2
+                    <span class="tooltiptext">2024-06-02: 分配人1-分校1-顾问1<br>2024-06-03: 分配人2-分校2-顾问2</span>
+                </span>
+            </td>
+            <td>渠道1-渠道2-渠道3</td>
+            <td>已跟进</td>
+            <td>
+                <span class="tooltip">情况1, 情况2
+                    <span class="tooltiptext">2024-06-01 作者1: 情况1<br>2024-06-02 作者2: 情况2</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>1234567890</td>
+            <td>张三微信</td>
+            <td>zhangsan123</td>
+            <td>123456</td>
+            <td>项目A, 项目B</td>
+            <td>
+                <span class="tooltip">分校1-顾问1, 分校2-顾问2
+                    <span class="tooltiptext">分校1: 顾问1<br>分校2: 顾问2</span>
+                </span>
+            </td>
+            <td>
+                <span class="tooltip">类型1-学校1-学院1/2020, 类型2-学校2-学院2/2021
+                    <span class="tooltiptext">类型1: 学校1-学院1/2020<br>类型2: 学校2-学院2/2021</span>
+                </span>
+            </td>
+            <td>2024-06-01</td>
+            <td>
+                <span class="tooltip">2024-06-02-分配人1-分校1-顾问1, 2024-06-03-分配人2-分校2-顾问2
+                    <span class="tooltiptext">2024-06-02: 分配人1-分校1-顾问1<br>2024-06-03: 分配人2-分校2-顾问2</span>
+                </span>
+            </td>
+            <td>渠道1-渠道2-渠道3</td>
+            <td>已跟进</td>
+            <td>
+                <span class="tooltip">情况1, 情况2
+                    <span class="tooltiptext">2024-06-01 作者1: 情况1<br>2024-06-02 作者2: 情况2</span>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>1234567890</td>
+            <td>张三微信</td>
+            <td>zhangsan123</td>
+            <td>123456</td>
+            <td>项目A, 项目B</td>
+            <td>
+                <span class="tooltip">分校1-顾问1, 分校2-顾问2
+                    <span class="tooltiptext">分校1: 顾问1<br>分校2: 顾问2</span>
+                </span>
+            </td>
+            <td>
+                <span class="tooltip">类型1-学校1-学院1/2020, 类型2-学校2-学院2/2021
+                    <span class="tooltiptext">类型1: 学校1-学院1/2020<br>类型2: 学校2-学院2/2021</span>
+                </span>
+            </td>
+            <td>2024-06-01</td>
+            <td>
+                <span class="tooltip">2024-06-02-分配人1-分校1-顾问1, 2024-06-03-分配人2-分校2-顾问2
+                    <span class="tooltiptext">2024-06-02: 分配人1-分校1-顾问1<br>2024-06-03: 分配人2-分校2-顾问2</span>
+                </span>
+            </td>
+            <td>渠道1-渠道2-渠道3</td>
+            <td>已跟进</td>
+            <td>
+                <span class="tooltip">情况1, 情况2
+                    <span class="tooltiptext">2024-06-01 作者1: 情况1<br>2024-06-02 作者2: 情况2</span>
+                </span>
+            </td>
+        </tr>
+        <!-- 其他数据行可以按相同格式添加 -->
+    </table>
 </body>
 </html>

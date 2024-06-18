@@ -10,7 +10,7 @@
                     "subOwnId": "user-department-sidebar",
                     "subRelateId": "user-department",
                     "scripts": ["./static/script/systemManagement/organizationManagement/userDepartment.js"],
-                    "styles": []
+                    "styles": ["./static/css/systemManagement/organizationManagement/userDepartment.css"]
                 },
                 {
                     "subName": "角色模板",

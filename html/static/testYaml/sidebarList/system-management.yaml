@@ -1,0 +1,40 @@
+sidebarList:
+  - name: 组织架构
+    ownId: organization-management-sidebar
+    relateId: organization-management
+    subSidebar:
+      - subName: 成员与部门
+        subOwnId: user-department-sidebar
+        subRelateId: user-department
+        scripts:
+          - ./static/script/systemManagement/organizationManagement/userDepartment.js
+        styles:
+          - ./static/css/systemManagement/organizationManagement/userDepartment.css
+      - subName: 角色模板
+        subOwnId: role-templates-sidebar
+        subRelateId: role-templates
+        scripts: []
+        styles: []
+      - subName: 用户字段管理
+        subOwnId: user-field-management-sidebar
+        subRelateId: user-field-management
+        scripts: []
+        styles: []
+  - name: 选项配置
+    ownId: option-config-sidebar
+    relateId: option-config
+    subSidebar:
+      - subName: "111"
+        subOwnId: 111111-sidebar
+        subRelateId: "111111"
+        scripts: []
+        styles: []
+  - name: 操作日志
+    ownId: system-operation-log-sidebar
+    relateId: system-operation-log
+    subSidebar:
+      - subName: "222"
+        subOwnId: 222222-sidebar
+        subRelateId: "222222"
+        scripts: []
+        styles: []
